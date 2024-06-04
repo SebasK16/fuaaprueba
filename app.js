@@ -1,22 +1,50 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const todoForm = document.getElementById('todo-form');
-    const todoInput = document.getElementById('todo-input');
-    const todoList = document.getElementById('todo-list');
+document.addEventListener('DOMContentLoaded', () => {
+    const destinosList = document.getElementById('destinos-list');
+    const lugaresList = document.getElementById('lugares-list');
+    const hosteriasList = document.getElementById('hosterias-list');
 
-    todoForm.addEventListener('submit', function(event) {
-        event.preventDefault();
+    const destinos = [
+        {name: 'Ciudad de México', description: 'Descubre la vibrante capital de México.'},
+        {name: 'París', description: 'La ciudad del amor y las luces.'},
+        {name: 'Tokio', description: 'Una mezcla fascinante de tradición y modernidad.'},
+        {name: 'Nueva York', description: 'La ciudad que nunca duerme.'}
+    ];
 
-        const newTodoText = todoInput.value.trim();
-        if (newTodoText !== '') {
-            const li = document.createElement('li');
-            li.textContent = newTodoText;
+    const lugares = [
+        {name: 'Torre Eiffel', description: 'Icono de París y una maravilla arquitectónica.'},
+        {name: 'Museo del Prado', description: 'Uno de los museos más importantes del mundo.'},
+        {name: 'Times Square', description: 'El corazón vibrante de Nueva York.'},
+        {name: 'Coliseo', description: 'Una maravilla del mundo antiguo en Roma.'}
+    ];
 
-            li.addEventListener('click', function() {
-                li.classList.toggle('completed');
-            });
+    const hosterias = [
+        {name: 'Hostería del Lago', description: 'Un lugar tranquilo junto al lago.'},
+        {name: 'Hostería La Selva', description: 'Rodeada de la belleza natural de la selva.'},
+        {name: 'Hostería El Mar', description: 'Vistas impresionantes al océano.'}
+    ];
 
-            todoList.appendChild(li);
-            todoInput.value = '';
-        }
+    const createCard = (item) => {
+        return `
+            <div class="col-md-6 col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">${item.name}</h5>
+                        <p class="card-text">${item.description}</p>
+                    </div>
+                </div>
+            </div>
+        `;
+    };
+
+    destinos.forEach(destino => {
+        destinosList.innerHTML += createCard(destino);
+    });
+
+    lugares.forEach(lugar => {
+        lugaresList.innerHTML += createCard(lugar);
+    });
+
+    hosterias.forEach(hosteria => {
+        hosteriasList.innerHTML += createCard(hosteria);
     });
 });
